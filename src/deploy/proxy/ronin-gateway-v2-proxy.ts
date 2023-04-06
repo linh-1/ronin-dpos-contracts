@@ -14,8 +14,15 @@ const deploy = async ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironme
   const { deploy, execute } = deployments;
   const { deployer } = await getNamedAccounts();
 
-  // const logicContract = await deployments.get('RoninGatewayV2Logic');
-  const logicContractAddress = '0xF7460e5A14Ac8aC700aF4e564228a9FAff2E9C04';
+  const logicContract = await deployments.get('RoninGatewayV2Logic');
+  const logicContractAddress = logicContract.address;
+
+  const validatorContract = await deployments.get('RoninValidatorSetProxy');
+  const validatorContractAddress = validatorContract.address;
+
+  const bridgeTrackingContract = await deployments.get('BridgeTrackingProxy');
+  const bridgeTrackingContractAddress = bridgeTrackingContract.address;
+  // const logicContractAddress = '0xF7460e5A14Ac8aC700aF4e564228a9FAff2E9C04';
 
   const gatewayRoleSetter = namedAddresses['gatewayRoleSetter'][network.name];
   const withdrawalMigrators = gatewayAccountSet['withdrawalMigrators'][network.name];
@@ -39,13 +46,14 @@ const deploy = async ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironme
     args: [logicContractAddress, deployer, data],
   });
 
+  //ronin validator set
   const setValidatorData = new RoninGatewayV2__factory().interface.encodeFunctionData('setValidatorContract', [
-    '0x262a3cab2bbb6fc414eb78e6755bf544b97dac01',
+    validatorContractAddress,
   ]);
   await execute('RoninGatewayV2Proxy', { from: deployer, log: true }, 'functionDelegateCall', setValidatorData);
 
   const setBridgeTracking = new RoninGatewayV2__factory().interface.encodeFunctionData('setBridgeTrackingContract', [
-    '0xBf9e491df628A3ab6daacb7b288032C1f84db52C',
+    bridgeTrackingContractAddress,
   ]);
   await execute('RoninGatewayV2Proxy', { from: deployer, log: true }, 'functionDelegateCall', setBridgeTracking);
 };

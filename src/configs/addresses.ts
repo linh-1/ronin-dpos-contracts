@@ -9,15 +9,18 @@ interface AccountSet {
 
 export const gatewayAccountSet: AccountSet = {
   relayers: {
+    [Network.Local]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
     [Network.Hardhat]: undefined,
     [Network.Devnet]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
     [Network.GoerliForDevnet]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
   },
   withdrawalUnlockers: {
+    [Network.Local]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
     [Network.Hardhat]: undefined,
     [Network.GoerliForDevnet]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
   },
   withdrawalMigrators: {
+    [Network.Local]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
     [Network.Hardhat]: undefined,
     [Network.Devnet]: ['0x968D0Cd7343f711216817E617d3f92a23dC91c07'],
   },
@@ -120,11 +123,13 @@ interface ContractAddress {
 
 export const namedAddresses: ContractAddress = {
   weth: {
+    [Network.Local]: '0x29C6F8349A028E1bdfC68BFa08BDee7bC5D47E16',
     [Network.Hardhat]: undefined,
     [Network.Devnet]: '0x29C6F8349A028E1bdfC68BFa08BDee7bC5D47E16',
     [Network.GoerliForDevnet]: '0xfe63586e65ECcAF7A41b1B6D05384a9CA1B246a8',
   },
   gatewayRoleSetter: {
+    [Network.Local]: '0x968D0Cd7343f711216817E617d3f92a23dC91c07',
     [Network.Hardhat]: undefined,
     [Network.Devnet]: '0x968D0Cd7343f711216817E617d3f92a23dC91c07',
     [Network.GoerliForDevnet]: '0x968D0Cd7343f711216817E617d3f92a23dC91c07',

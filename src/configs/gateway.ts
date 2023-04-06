@@ -61,6 +61,11 @@ export const validatorThreshold: NetworkThreshold = {
 };
 
 export const gatewayThreshold: NetworkThreshold = {
+  [Network.Local]: {
+    numerator: 70,
+    highTierVoteWeightNumerator: 90,
+    denominator: 100,
+  },
   [Network.Hardhat]: undefined,
   [Network.Devnet]: {
     numerator: 70,
@@ -84,6 +89,7 @@ export const mainnetChainId: MapNetworkNumberSet = {
 };
 
 export const roninChainId: MapNetworkNumber = {
+  [Network.Local]: 2021,
   [Network.Hardhat]: undefined,
   [Network.Devnet]: 2022,
   [Network.Testnet]: 2021,
@@ -93,6 +99,30 @@ export const roninChainId: MapNetworkNumber = {
 };
 
 export const mainchainMappedToken: MainchainMappedToken = {
+  [Network.Local]: {
+    mainchainTokens: [],
+    roninTokens: [],
+    standards: [0, 0, 0, 0],
+    highTierThresholds: [
+      BigNumber.from('2200000000000000000'),
+      BigNumber.from('1000000000000000000'),
+      BigNumber.from('20000'),
+      BigNumber.from('2000000'),
+    ],
+    lockedThresholds: [
+      BigNumber.from('3300000000000000000'),
+      BigNumber.from('3000000000000000000'),
+      BigNumber.from('30000'),
+      BigNumber.from('3000000'),
+    ],
+    unlockFeePercentages: [BigNumber.from(10), BigNumber.from(10), BigNumber.from(10), BigNumber.from(10)],
+    dailyWithdrawalLimits: [
+      BigNumber.from('45900000000000000000000'),
+      BigNumber.from('100000000000000000000'),
+      BigNumber.from('13698630100'),
+      BigNumber.from('1000000000'),
+    ],
+  },
   [Network.Hardhat]: undefined,
   [Network.GoerliForDevnet]: {
     mainchainTokens: [
@@ -132,6 +162,19 @@ export const mainchainMappedToken: MainchainMappedToken = {
 
 // TODO: fill mainnet config
 export const roninMappedToken: RoninMappedToken = {
+  [Network.Local]: {
+    roninTokens: [],
+    mainchainTokens: [],
+    standards: [0, 0, 0, 0, 0],
+    chainIds: [2021, 2021, 2021, 2021, 2021],
+    minimumThresholds: [
+      BigNumber.from(10).pow(16), // 0.01 WETH
+      BigNumber.from(10).pow(17).mul(5), // 0.5 AXS
+      BigNumber.from(100), // 100 SLP
+      BigNumber.from(10).pow(18).mul(2), // 20 USDT
+      BigNumber.from(10).pow(6).mul(2), // 20 USDC
+    ],
+  },
   [Network.Hardhat]: undefined,
   [Network.Devnet]: {
     roninTokens: [

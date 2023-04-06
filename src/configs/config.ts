@@ -41,6 +41,7 @@ export const allNetworks: LiteralNetwork[] = [
 export const defaultAddress = '0x0000000000000000000000000000000000000000';
 
 const defaultGeneralConf = {
+  roninChainId: 2021,
   startedAtBlock: 0,
   bridgeContract: ethers.constants.AddressZero,
 };
@@ -180,8 +181,8 @@ export const slashIndicatorConf: SlashIndicatorConfig = {
 };
 
 const defaultRoninValidatorSetConf: RoninValidatorSetArguments = {
-  maxValidatorNumber: 21,
-  maxPrioritizedValidatorNumber: 11,
+  maxValidatorNumber: 5,
+  maxPrioritizedValidatorNumber: 3,
   maxValidatorCandidate: 100,
   numberOfBlocksInEpoch: 600,
   minEffectiveDaysOnwards: 7,
@@ -204,13 +205,15 @@ export const roninValidatorSetConf: RoninValidatorSetConfig = {
 };
 
 const defaultRoninTrustedOrganizationConf: RoninTrustedOrganizationArguments = {
-  trustedOrganizations: ['0x93b8eed0a1e082ae2f478fd7f8c14b1fc0261bb1'].map((addr) => ({
-    consensusAddr: addr,
-    governor: addr,
-    bridgeVoter: addr,
-    weight: 100,
-    addedBlock: 0,
-  })),
+  trustedOrganizations: [
+    {
+      consensusAddr: '0xEf8035D9234A73da39d276eB0B7E2Dab6798a35C',
+      governor: '0x72CdcAa905a00D76d5a6369Fb97e556Cf3F5AC7b',
+      bridgeVoter: '0x83D1dd270502b7F76D2025E6C0fB08e1Dd959659',
+      weight: 100,
+      addedBlock: 0,
+    },
+  ],
   numerator: 0,
   denominator: 1,
 };
@@ -307,6 +310,21 @@ export const roninGovernanceAdminConf: RoninGovernanceAdminConfig = {
 };
 
 export const vaultForwarderConf: VaultForwarderConfig = {
+  [Network.Local]: [
+    {
+      vaultId: 'qc-test',
+      targets: [
+        '0x8a320aFb578BEed1A5BB08823CF9A5f60Ea694f4', // RoninGovernanceAdmin
+        '0x7f46c5DD5f13FF0dd973317411d70800db248e7d', // RoninTrustedOrganizationProxy
+        '0x4016C80D97DDCbe4286140446759a3f0c1d20584', // MaintenanceProxy
+        '0xF7837778b6E180Df6696C8Fa986d62f8b6186752', // SlashIndicatorProxy
+        '0x9C245671791834daf3885533D24dce516B763B28', // StakingProxy
+        '0x54B3AC74a90E64E8dDE60671b6fE8F8DDf18eC9d', // RoninValidatorSetProxy
+        '0x61626ba084aDdc5dBFCdFfA257e66F8618d3feAB', // BridgeTrackingProxy
+      ],
+      moderator: '0x8643c5d7048d149297229ded82fd7ac1ec099999',
+    },
+  ],
   [Network.Testnet]: [
     {
       vaultId: 'qc-test',

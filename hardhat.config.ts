@@ -36,7 +36,7 @@ if (!GOERLI_PK) {
 
 const local: NetworkUserConfig = {
   url: 'http://localhost:8545',
-  accounts: { mnemonic: DEFAULT_MNEMONIC },
+  accounts: DEVNET_PK ? [DEVNET_PK] : { mnemonic: DEFAULT_MNEMONIC },
 };
 
 const devnet: NetworkUserConfig = {
@@ -70,7 +70,7 @@ const compilerConfig: SolcUserConfig = {
   settings: {
     optimizer: {
       enabled: true,
-      runs: 200,
+      runs: 100,
     },
   },
 };

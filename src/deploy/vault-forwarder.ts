@@ -18,23 +18,23 @@ const deploy = async ({ getNamedAccounts, deployments }: HardhatRuntimeEnvironme
   let admin: Address = deployer;
   let moderator: Address = deployer;
 
-  for (let vaultConf of vaultConfigs) {
-    let deploymentName = [artifactName, vaultConf.vaultId].join('-');
-
-    await deploy(deploymentName, {
-      contract: artifactName,
-      from: deployer,
-      log: true,
-      args: [
-        // target
-        vaultConf.targets ?? targets,
-        // admin
-        vaultConf.admin ?? admin,
-        // moderator
-        vaultConf.moderator ?? moderator,
-      ],
-    });
-  }
+  // for (let vaultConf of vaultConfigs) {
+  //   let deploymentName = [artifactName, vaultConf.vaultId].join('-');
+  //
+  //   await deploy(deploymentName, {
+  //     contract: artifactName,
+  //     from: deployer,
+  //     log: true,
+  //     args: [
+  //       // target
+  //       vaultConf.targets ?? targets,
+  //       // admin
+  //       vaultConf.admin ?? admin,
+  //       // moderator
+  //       vaultConf.moderator ?? moderator,
+  //     ],
+  //   });
+  // }
 };
 
 deploy.tags = ['VaultForwarder'];
