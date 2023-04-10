@@ -181,7 +181,7 @@ export const slashIndicatorConf: SlashIndicatorConfig = {
 };
 
 const defaultRoninValidatorSetConf: RoninValidatorSetArguments = {
-  maxValidatorNumber: 5,
+  maxValidatorNumber: 7,
   maxPrioritizedValidatorNumber: 3,
   maxValidatorCandidate: 100,
   numberOfBlocksInEpoch: 30,
